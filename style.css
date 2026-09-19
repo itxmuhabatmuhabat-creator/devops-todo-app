@@ -1,0 +1,146 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f5;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+div.app {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 360px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* --- input row: text box + date picker + Add button --- */
+
+.input-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 0; /* stops the text box from overflowing the row */
+}
+
+#dueDateInput {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#addBtn {
+  padding: 8px 12px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#addBtn:hover {
+  background-color: #3a54c4;
+}
+
+/* --- filter tabs --- */
+
+.filters {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.filter-btn {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.filter-btn.active {
+  background-color: #4a6cf7;
+  color: white;
+  border-color: #4a6cf7;
+}
+
+/* --- counter text --- */
+
+#counter {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* --- task list --- */
+
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+#taskList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7f7fa;
+  padding: 8px 10px;
+  border-radius: 5px;
+  margin-bottom: 6px;
+}
+
+#taskList li.done span.task-text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.task-text {
+  cursor: pointer;
+}
+
+.due-date {
+  font-size: 11px;
+  color: #999;
+  margin-left: 8px;
+}
+
+#taskList li button {
+  background-color: #ff5a5a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+/* --- clear completed button --- */
+
+#clearBtn {
+  width: 100%;
+  padding: 8px;
+  background-color: #eee;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #555;
+}
+
+#clearBtn:hover {
+  background-color: #ddd;
+}

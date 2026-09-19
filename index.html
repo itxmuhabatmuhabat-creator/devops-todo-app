@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <h1>My To-Do List</h1>
+
+    <div class="input-row">
+      <input type="text" id="taskInput" placeholder="Enter a task" />
+      <input type="date" id="dueDateInput" />
+      <button id="addBtn">Add</button>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </div>
+
+    <p id="counter">0 tasks remaining</p>
+
+    <ul id="taskList"></ul>
+
+    <button id="clearBtn">Clear Completed</button>
+  </div>
+
+  <script src="logic.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
