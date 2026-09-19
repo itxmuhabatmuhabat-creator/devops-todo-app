@@ -1,23 +1,43 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f5;
+  background: linear-gradient(135deg, #1f1fe5, #7b2ff7, #f107a3);
+  background-size: 300% 300%;
+  animation: bgShift 12s ease infinite;   /* slowly moving gradient */
+  min-height: 100vh;
+  margin: 0;
   display: flex;
   justify-content: center;
   padding-top: 50px;
 }
 
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 div.app {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   padding: 20px 30px;
-  border-radius: 10px;
+  border-radius: 14px;
   width: 360px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  height: fit-content;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
   margin-bottom: 15px;
+  background: linear-gradient(90deg, #4a6cf7, #f107a3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;                      /* gradient text */
 }
 
 /* --- input row: text box + date picker + Add button --- */
@@ -33,26 +53,41 @@ h1 {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  min-width: 0; /* stops the text box from overflowing the row */
+  min-width: 0;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#taskInput:focus,
+#dueDateInput:focus {
+  outline: none;
+  border-color: #4a6cf7;
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.25);   /* glow on focus */
 }
 
 #dueDateInput {
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 #addBtn {
   padding: 8px 12px;
-  background-color: #4a6cf7;
+  background: linear-gradient(135deg, #4a6cf7, #7b2ff7);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 #addBtn:hover {
-  background-color: #3a54c4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(74, 108, 247, 0.5);
+}
+
+#addBtn:active {
+  transform: translateY(0);
 }
 
 /* --- filter tabs --- */
@@ -71,19 +106,27 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   font-size: 13px;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: #4a6cf7;
+  color: #4a6cf7;
 }
 
 .filter-btn.active {
-  background-color: #4a6cf7;
+  background: linear-gradient(135deg, #4a6cf7, #7b2ff7);
   color: white;
-  border-color: #4a6cf7;
+  border-color: transparent;
+  box-shadow: 0 3px 8px rgba(74, 108, 247, 0.4);
 }
 
 /* --- counter text --- */
 
 #counter {
   font-size: 13px;
-  color: #777;
+  color: #7b2ff7;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
@@ -103,6 +146,20 @@ h1 {
   padding: 8px 10px;
   border-radius: 5px;
   margin-bottom: 6px;
+  border-left: 4px solid #4a6cf7;          /* colored edge */
+  animation: slideIn 0.3s ease;            /* new tasks slide in */
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+#taskList li:hover {
+  transform: translateX(4px);
+  background: #eef1ff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+#taskList li.done {
+  border-left-color: #2ecc71;              /* green edge when done */
+  background: #f0fbf4;
 }
 
 #taskList li.done span.task-text {
@@ -112,11 +169,19 @@ h1 {
 
 .task-text {
   cursor: pointer;
+  transition: color 0.2s;
+}
+
+.task-text:hover {
+  color: #4a6cf7;
 }
 
 .due-date {
   font-size: 11px;
-  color: #999;
+  color: #e67e22;
+  background: #fff3e6;
+  padding: 2px 6px;
+  border-radius: 10px;
   margin-left: 8px;
 }
 
@@ -127,6 +192,12 @@ h1 {
   border-radius: 4px;
   padding: 3px 8px;
   cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+#taskList li button:hover {
+  background-color: #d63031;
+  transform: scale(1.1);
 }
 
 /* --- clear completed button --- */
@@ -139,8 +210,11 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   color: #555;
+  transition: all 0.2s;
 }
 
 #clearBtn:hover {
-  background-color: #ddd;
+  background: linear-gradient(135deg, #ff5a5a, #f107a3);
+  color: white;
+  box-shadow: 0 3px 8px rgba(241, 7, 163, 0.35);
 }
