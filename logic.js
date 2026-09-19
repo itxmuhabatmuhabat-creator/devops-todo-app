@@ -1,5 +1,8 @@
-// logic.js — pure logic, no browser code here.
-// Each task looks like: { id: 1, text: "Buy milk", done: false, dueDate: "2026-09-20" }
+let lastId = 0;
+function makeId() {
+  lastId = Math.max(Date.now(), lastId + 1);
+  return lastId;
+}
 
 function addTask(tasks, text, dueDate) {
   const clean = text.trim();
@@ -7,7 +10,7 @@ function addTask(tasks, text, dueDate) {
     return tasks; // don't add empty tasks
   }
   const newTask = {
-    id: Date.now(),
+    id: makeId(),
     text: clean,
     done: false,
     dueDate: dueDate || ""
